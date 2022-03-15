@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "D0kdqEaj5F5UPWnbuiSTHdjuGmU74F3yhN04rhNudCAXFhL7MTMeueJoE05Glsi5c4TABuKkJO6Vnwp8O91Vjg==",
+  "success": true,
+  "projectFilePath": "D:\\coba\\WinFormsApp1\\WinFormsApp1.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\SUSANA\\.nuget\\packages\\automaticgraphlayout\\1.1.11\\automaticgraphlayout.1.1.11.nupkg.sha512",
+    "C:\\Users\\SUSANA\\.nuget\\packages\\automaticgraphlayout.drawing\\1.1.11\\automaticgraphlayout.drawing.1.1.11.nupkg.sha512",
+    "C:\\Users\\SUSANA\\.nuget\\packages\\automaticgraphlayout.graphviewergdi\\1.1.11\\automaticgraphlayout.graphviewergdi.1.1.11.nupkg.sha512",
+    "C:\\Users\\SUSANA\\.nuget\\packages\\automaticgraphlayout.wpfgraphcontrol\\1.1.11\\automaticgraphlayout.wpfgraphcontrol.1.1.11.nupkg.sha512"
+  ],
+  "logs": []
+}
