@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\coba\\WinFormsApp1\\WinFormsApp1.csproj": {}
+    "D:\\Tubes2_13520065\\WinFormsApp1\\WinFormsApp1.csproj": {}
   },
   "projects": {
-    "D:\\coba\\WinFormsApp1\\WinFormsApp1.csproj": {
+    "D:\\Tubes2_13520065\\WinFormsApp1\\WinFormsApp1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\coba\\WinFormsApp1\\WinFormsApp1.csproj",
+        "projectUniqueName": "D:\\Tubes2_13520065\\WinFormsApp1\\WinFormsApp1.csproj",
         "projectName": "WinFormsApp1",
-        "projectPath": "D:\\coba\\WinFormsApp1\\WinFormsApp1.csproj",
+        "projectPath": "D:\\Tubes2_13520065\\WinFormsApp1\\WinFormsApp1.csproj",
         "packagesPath": "C:\\Users\\SUSANA\\.nuget\\packages\\",
-        "outputPath": "D:\\coba\\WinFormsApp1\\obj\\",
+        "outputPath": "D:\\Tubes2_13520065\\WinFormsApp1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\SUSANA\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -30,19 +30,21 @@
         {
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.checkBoxFindAllOccurence = new System.Windows.Forms.CheckBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.textBoxFileName = new System.Windows.Forms.TextBox();
             this.btnPickFolder = new System.Windows.Forms.Button();
             this.panelLogo = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panelHyperlink = new System.Windows.Forms.Panel();
             this.panelTree = new System.Windows.Forms.Panel();
+            this.panelHyperlink = new System.Windows.Forms.Panel();
             this.panelMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.panelMenu.Controls.Add(this.checkBoxFindAllOccurence);
             this.panelMenu.Controls.Add(this.btnSearch);
             this.panelMenu.Controls.Add(this.textBoxFileName);
             this.panelMenu.Controls.Add(this.btnPickFolder);
@@ -52,6 +54,18 @@
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Size = new System.Drawing.Size(220, 450);
             this.panelMenu.TabIndex = 0;
+            // 
+            // checkBoxFindAllOccurence
+            // 
+            this.checkBoxFindAllOccurence.AutoSize = true;
+            this.checkBoxFindAllOccurence.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.checkBoxFindAllOccurence.ForeColor = System.Drawing.Color.Gainsboro;
+            this.checkBoxFindAllOccurence.Location = new System.Drawing.Point(13, 151);
+            this.checkBoxFindAllOccurence.Name = "checkBoxFindAllOccurence";
+            this.checkBoxFindAllOccurence.Size = new System.Drawing.Size(197, 29);
+            this.checkBoxFindAllOccurence.TabIndex = 3;
+            this.checkBoxFindAllOccurence.Text = "Find All Occurence";
+            this.checkBoxFindAllOccurence.UseVisualStyleBackColor = true;
             // 
             // btnSearch
             // 
@@ -113,19 +127,6 @@
             this.panel1.Size = new System.Drawing.Size(580, 0);
             this.panel1.TabIndex = 1;
             // 
-            // panelHyperlink
-            // 
-            this.panelHyperlink.AutoScroll = true;
-            this.panelHyperlink.AutoSize = true;
-            this.panelHyperlink.BackColor = System.Drawing.Color.Gold;
-            this.panelHyperlink.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelHyperlink.Location = new System.Drawing.Point(220, 350);
-            this.panelHyperlink.MaximumSize = new System.Drawing.Size(0, 200);
-            this.panelHyperlink.MinimumSize = new System.Drawing.Size(0, 100);
-            this.panelHyperlink.Name = "panelHyperlink";
-            this.panelHyperlink.Size = new System.Drawing.Size(580, 100);
-            this.panelHyperlink.TabIndex = 2;
-            // 
             // panelTree
             // 
             this.panelTree.AutoScroll = true;
@@ -135,6 +136,17 @@
             this.panelTree.Name = "panelTree";
             this.panelTree.Size = new System.Drawing.Size(580, 350);
             this.panelTree.TabIndex = 3;
+            this.panelTree.Paint += new System.Windows.Forms.PaintEventHandler(this.panelTree_Paint);
+            // 
+            // panelHyperlink
+            // 
+            this.panelHyperlink.BackColor = System.Drawing.Color.Gold;
+            this.panelHyperlink.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelHyperlink.Location = new System.Drawing.Point(220, 350);
+            this.panelHyperlink.Name = "panelHyperlink";
+            this.panelHyperlink.Size = new System.Drawing.Size(580, 100);
+            this.panelHyperlink.TabIndex = 4;
+            this.panelHyperlink.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // Form1
             // 
@@ -147,6 +159,7 @@
             this.Controls.Add(this.panelMenu);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.panelMenu.ResumeLayout(false);
             this.panelMenu.PerformLayout();
             this.ResumeLayout(false);
@@ -160,9 +173,10 @@
         private Button btnPickFolder;
         private Panel panelLogo;
         private Panel panel1;
-        private Panel panelHyperlink;
         private Panel panelTree;
         private TextBox textBoxFileName;
         private Button btnSearch;
+        private CheckBox checkBoxFindAllOccurence;
+        private Panel panelHyperlink;
     }
 }

@@ -10,7 +10,8 @@ namespace WinFormsApp1
     {
         public static string directory = "";
         public static string target = "";
-        private static Boolean DFS(Microsoft.Msagl.Drawing.Graph graph, string prevPath, string curPath)
+        public static Queue<string> targetPathQueue = new Queue<string>();
+        private static Boolean DFS(Microsoft.Msagl.Drawing.Graph graph, string prevPath, string curPath, bool allOccurence)
         {
             Boolean found = false;
             string curTarget = curPath + "\\" + target;
@@ -31,7 +32,11 @@ namespace WinFormsApp1
                 {
                     graph.FindNode(file).Attr.Color = Microsoft.Msagl.Drawing.Color.Blue;
                     found = true;
-                    return found;
+                    targetPathQueue.Enqueue(curPath);
+                    if (!allOccurence)
+                    {
+                        return found;
+                    }
                 }
                 else
                 {
@@ -39,21 +44,23 @@ namespace WinFormsApp1
                 }
             }
             string[] directories = Directory.GetDirectories(curPath);
+            bool tempFound;
 
             foreach (string directory in directories)
             {
-                found = DFS(graph, curPath, directory) || found;
+                tempFound = DFS(graph, curPath, directory, allOccurence);
 
-                if (!found)
+                if (!tempFound)
                 {
                     graph.FindNode(directory).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
                 }
-                else if (found)
+                else if (tempFound)
                 {
                     graph.FindNode(directory).Attr.Color = Microsoft.Msagl.Drawing.Color.Blue;
                 }
+                found = tempFound || found;
 
-                if (found)
+                if (!allOccurence && found)
                 {
                     break;
                 }
@@ -61,8 +68,9 @@ namespace WinFormsApp1
             return found;
         }
 
-        public static void DFS(Microsoft.Msagl.Drawing.Graph graph, string curPath)
+        public static void DFS(Microsoft.Msagl.Drawing.Graph graph, string curPath, bool allOccurence)
         {
+             targetPathQueue.Clear();
              Boolean found = false;
              string curTarget = curPath + "\\" + target;
              graph.AddNode(curPath);
@@ -80,7 +88,11 @@ namespace WinFormsApp1
                  {
                      graph.FindNode(file).Attr.Color = Microsoft.Msagl.Drawing.Color.Blue;
                      found = true;
-                     return;
+                     targetPathQueue.Enqueue(curPath);
+                     if (!allOccurence)
+                     {
+                        return;
+                     }
                  } else
                  {
                      graph.FindNode(file).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
@@ -88,20 +100,20 @@ namespace WinFormsApp1
              }
 
              string[] directories = Directory.GetDirectories(curPath);
-
+             bool tempFound;
              foreach (string directory in directories)
              {
-                 found = DFS(graph, curPath, directory) || found;
-                 if (!found)
+                 tempFound = DFS(graph, curPath, directory, allOccurence);
+                 if (!tempFound)
                  {
                      graph.FindNode(directory).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
                  }
-                 else if (found)
+                 else if (tempFound)
                  {
                      graph.FindNode(directory).Attr.Color = Microsoft.Msagl.Drawing.Color.Blue;
                  }
-
-                 if (found)
+                 found = tempFound || found;
+                 if (!allOccurence && found)
                  {
                      break;
                  }
