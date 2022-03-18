@@ -30,6 +30,8 @@
         {
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.radioButtonBFS = new System.Windows.Forms.RadioButton();
+            this.radioButtonDFS = new System.Windows.Forms.RadioButton();
             this.checkBoxFindAllOccurence = new System.Windows.Forms.CheckBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.textBoxFileName = new System.Windows.Forms.TextBox();
@@ -44,6 +46,8 @@
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.panelMenu.Controls.Add(this.radioButtonBFS);
+            this.panelMenu.Controls.Add(this.radioButtonDFS);
             this.panelMenu.Controls.Add(this.checkBoxFindAllOccurence);
             this.panelMenu.Controls.Add(this.btnSearch);
             this.panelMenu.Controls.Add(this.textBoxFileName);
@@ -54,6 +58,32 @@
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Size = new System.Drawing.Size(220, 450);
             this.panelMenu.TabIndex = 0;
+            // 
+            // radioButtonBFS
+            // 
+            this.radioButtonBFS.AutoSize = true;
+            this.radioButtonBFS.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.radioButtonBFS.ForeColor = System.Drawing.Color.Gainsboro;
+            this.radioButtonBFS.Location = new System.Drawing.Point(13, 221);
+            this.radioButtonBFS.Name = "radioButtonBFS";
+            this.radioButtonBFS.Size = new System.Drawing.Size(68, 29);
+            this.radioButtonBFS.TabIndex = 5;
+            this.radioButtonBFS.TabStop = true;
+            this.radioButtonBFS.Text = "BFS";
+            this.radioButtonBFS.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonDFS
+            // 
+            this.radioButtonDFS.AutoSize = true;
+            this.radioButtonDFS.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.radioButtonDFS.ForeColor = System.Drawing.Color.Gainsboro;
+            this.radioButtonDFS.Location = new System.Drawing.Point(12, 186);
+            this.radioButtonDFS.Name = "radioButtonDFS";
+            this.radioButtonDFS.Size = new System.Drawing.Size(69, 29);
+            this.radioButtonDFS.TabIndex = 4;
+            this.radioButtonDFS.TabStop = true;
+            this.radioButtonDFS.Text = "DFS";
+            this.radioButtonDFS.UseVisualStyleBackColor = true;
             // 
             // checkBoxFindAllOccurence
             // 
@@ -83,11 +113,12 @@
             // 
             // textBoxFileName
             // 
-            this.textBoxFileName.Location = new System.Drawing.Point(10, 188);
+            this.textBoxFileName.Location = new System.Drawing.Point(13, 256);
             this.textBoxFileName.Name = "textBoxFileName";
             this.textBoxFileName.PlaceholderText = "Insert file name here";
             this.textBoxFileName.Size = new System.Drawing.Size(202, 31);
             this.textBoxFileName.TabIndex = 0;
+            this.textBoxFileName.TextChanged += new System.EventHandler(this.textBoxFileName_TextChanged);
             // 
             // btnPickFolder
             // 
@@ -178,5 +209,7 @@
         private Button btnSearch;
         private CheckBox checkBoxFindAllOccurence;
         private Panel panelHyperlink;
+        private RadioButton radioButtonBFS;
+        private RadioButton radioButtonDFS;
     }
 }

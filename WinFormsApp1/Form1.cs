@@ -24,9 +24,15 @@ namespace WinFormsApp1
             Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
             FileSearch.target = textBoxFileName.Text;
 
-            /*FileSearch.DFS(graph, FileSearch.directory, checkBoxFindAllOccurence.Checked);*/
+            if (radioButtonBFS.Checked)
+            {
+                FileSearch.BFS(graph, FileSearch.directory, checkBoxFindAllOccurence.Checked);
 
-            FileSearch.BFS(graph, FileSearch.directory, checkBoxFindAllOccurence.Checked);
+            } else
+            {
+                FileSearch.DFS(graph, FileSearch.directory, checkBoxFindAllOccurence.Checked);
+            }
+
 
             viewer.Graph = graph;
             viewer.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -83,6 +89,11 @@ namespace WinFormsApp1
         }
 
         private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void textBoxFileName_TextChanged(object sender, EventArgs e)
         {
 
         }
