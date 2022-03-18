@@ -115,19 +115,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\SUSANA\\.nuget\\packages\\": {}
+    "C:\\Users\\rayha\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Tubes2_13520065\\WinFormsApp1\\WinFormsApp1.csproj",
+      "projectUniqueName": "C:\\Users\\rayha\\Downloads\\App\\Stima\\folder-crawling\\WinFormsApp1\\WinFormsApp1.csproj",
       "projectName": "WinFormsApp1",
-      "projectPath": "D:\\Tubes2_13520065\\WinFormsApp1\\WinFormsApp1.csproj",
-      "packagesPath": "C:\\Users\\SUSANA\\.nuget\\packages\\",
-      "outputPath": "D:\\Tubes2_13520065\\WinFormsApp1\\obj\\",
+      "projectPath": "C:\\Users\\rayha\\Downloads\\App\\Stima\\folder-crawling\\WinFormsApp1\\WinFormsApp1.csproj",
+      "packagesPath": "C:\\Users\\rayha\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\rayha\\Downloads\\App\\Stima\\folder-crawling\\WinFormsApp1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\SUSANA\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\rayha\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -188,7 +188,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

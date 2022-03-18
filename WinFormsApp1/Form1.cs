@@ -5,60 +5,64 @@ namespace WinFormsApp1
     
     public partial class Form1 : Form
     {
+        private string directory, target;
         public Form1()
         {
             InitializeComponent();
+            this.directory = "";
+            this.target = "";
         }
 
         private void btnPickFolder_Click(object sender, EventArgs e)
         {
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
-                FileSearch.directory = folderBrowserDialog1.SelectedPath;
+                this.directory = folderBrowserDialog1.SelectedPath;
             }
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            GViewer viewer = new GViewer();
+            this.target = textBoxFileName.Text;
+
             Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
-            FileSearch.target = textBoxFileName.Text;
+            Queue<string> targetPathQueue = new Queue<string>();
 
             if (radioButtonBFS.Checked)
             {
-                FileSearch.BFS(graph, FileSearch.directory, checkBoxFindAllOccurence.Checked);
-
+                FileTraversal.TraverseTreeBFS(graph, targetPathQueue, this.directory, this.target, checkBoxFindAllOccurence.Checked);
             } else
             {
-                FileSearch.DFS(graph, FileSearch.directory, checkBoxFindAllOccurence.Checked);
+                FileTraversal.TraverseTreeDFS(graph, targetPathQueue, this.directory, this.target, checkBoxFindAllOccurence.Checked);
             }
 
-
+            GViewer viewer = new GViewer();
             viewer.Graph = graph;
-            viewer.Dock = System.Windows.Forms.DockStyle.Fill;
+            viewer.Dock = DockStyle.Fill;
             viewer.AutoScroll = true;
             viewer.OutsideAreaBrush = Brushes.White;
             viewer.ToolBarIsVisible = false;
+
             panelTree.SuspendLayout();
             panelTree.Controls.Clear();
-
             panelTree.Controls.Add(viewer);
             panelTree.ResumeLayout();
             panelTree.Show();
 
             panelHyperlink.SuspendLayout();
             panelHyperlink.Controls.Clear();
+
             TableLayoutPanel newPanel = new TableLayoutPanel();
             newPanel.Dock = DockStyle.Fill;
             newPanel.BackColor = Color.Gold;
-            newPanel.RowCount = FileSearch.targetPathQueue.Count;
+            newPanel.RowCount = targetPathQueue.Count;
             newPanel.ColumnCount = 1;
             newPanel.AutoScroll = true;
 
             int rowCount = 0;
-            while (FileSearch.targetPathQueue.Count != 0)
+            while (targetPathQueue.Count != 0)
             {
-                string path = FileSearch.targetPathQueue.Dequeue();
+                string path = targetPathQueue.Dequeue();
                 LinkLabel linkLabel = new LinkLabel();
                 linkLabel.Dock = DockStyle.Fill;
                 linkLabel.Text = path;
@@ -75,27 +79,7 @@ namespace WinFormsApp1
 
         void OnLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("explorer.exe", e.Link.LinkData as string);
-        }
-
-        private void panelTree_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void textBoxFileName_TextChanged(object sender, EventArgs e)
-        {
-
+            System.Diagnostics.Process.Start("explorer.exe", e.Link.LinkData.ToString());
         }
     }
 }

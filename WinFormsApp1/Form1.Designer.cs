@@ -118,7 +118,6 @@
             this.textBoxFileName.PlaceholderText = "Insert file name here";
             this.textBoxFileName.Size = new System.Drawing.Size(202, 31);
             this.textBoxFileName.TabIndex = 0;
-            this.textBoxFileName.TextChanged += new System.EventHandler(this.textBoxFileName_TextChanged);
             // 
             // btnPickFolder
             // 
@@ -167,7 +166,6 @@
             this.panelTree.Name = "panelTree";
             this.panelTree.Size = new System.Drawing.Size(580, 350);
             this.panelTree.TabIndex = 3;
-            this.panelTree.Paint += new System.Windows.Forms.PaintEventHandler(this.panelTree_Paint);
             // 
             // panelHyperlink
             // 
@@ -177,7 +175,6 @@
             this.panelHyperlink.Name = "panelHyperlink";
             this.panelHyperlink.Size = new System.Drawing.Size(580, 100);
             this.panelHyperlink.TabIndex = 4;
-            this.panelHyperlink.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // Form1
             // 
@@ -190,7 +187,6 @@
             this.Controls.Add(this.panelMenu);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.panelMenu.ResumeLayout(false);
             this.panelMenu.PerformLayout();
             this.ResumeLayout(false);
