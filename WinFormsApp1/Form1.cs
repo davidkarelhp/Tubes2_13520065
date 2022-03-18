@@ -23,7 +23,11 @@ namespace WinFormsApp1
             GViewer viewer = new GViewer();
             Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
             FileSearch.target = textBoxFileName.Text;
-            FileSearch.DFS(graph, FileSearch.directory, checkBoxFindAllOccurence.Checked);
+
+            /*FileSearch.DFS(graph, FileSearch.directory, checkBoxFindAllOccurence.Checked);*/
+
+            FileSearch.BFS(graph, FileSearch.directory, checkBoxFindAllOccurence.Checked);
+
             viewer.Graph = graph;
             viewer.Dock = System.Windows.Forms.DockStyle.Fill;
             viewer.AutoScroll = true;
