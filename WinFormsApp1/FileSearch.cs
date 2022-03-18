@@ -126,15 +126,11 @@ namespace WinFormsApp1
             targetPathQueue.Clear();
             Queue<string> BFSQueue = new Queue<string>();
             Stack<string> BFSStack = new Stack<string>();
-            LinkedList<string> BFSLL = new LinkedList<string>();
-            Dictionary<string, bool> myMap = new Dictionary<string, bool>();
+            HashSet<string> targetPathSet = new HashSet<string>();
             Dictionary<string, string> previousPaths = new Dictionary<string, string>();
 
             BFSQueue.Enqueue(curPath);
-            /*BFSLL.AddLast(curPath);*/
 
-            /*            string prevPath = null;
-            */
             previousPaths[curPath] = null;
 
             while (BFSQueue.Count != 0)
@@ -151,9 +147,6 @@ namespace WinFormsApp1
                 else
                 {
                     BFSStack.Push(tempPath);
-                    BFSLL.AddLast(prevPath);
-                    graph.AddEdge(prevPath, tempPath);
-                    graph.FindNode(tempPath).LabelText = tempPath.Substring(prevPath.Length + 1);
                 }
 
                 string[] files = Directory.GetFiles(tempPath, "*");
@@ -167,7 +160,6 @@ namespace WinFormsApp1
                     graph.FindNode(file).LabelText = file.Substring(n + 1);
                     graph.FindNode(file).Attr.Shape = Microsoft.Msagl.Drawing.Shape.Ellipse;
                     BFSStack.Push(file);
-                    BFSLL.AddLast(tempPath);
                     previousPaths[file] = tempPath;
 
                     if (file == curTarget)
@@ -175,7 +167,7 @@ namespace WinFormsApp1
                         graph.FindNode(file).Attr.Color = Microsoft.Msagl.Drawing.Color.Blue;
                         found = true;
                         targetPathQueue.Enqueue(tempPath);
-                        myMap[file] = true;
+                        targetPathSet.Add(file);
 
                         if (!allOccurence)
                         {
@@ -195,45 +187,28 @@ namespace WinFormsApp1
                 else
                 {
                     string[] directories = Directory.GetDirectories(tempPath);
-                    bool tempFound;
 
                     foreach (string directory in directories)
                     {
                         previousPaths[directory] = tempPath;
                         BFSQueue.Enqueue(directory);
+                        graph.AddEdge(tempPath, directory);
+                        graph.FindNode(directory).LabelText = directory.Substring(tempPath.Length + 1);
                     }
                 }
             }
 
             bool foundTarget = false;
-            /*foreach (string path in BFSLL)
-            {
-
-                string tempPath = BFSStack.Pop();
-
-                if (myMap.ContainsKey(tempPath))
-                {
-                    foundTarget = true;
-                    myMap[path] = true;
-                    graph.FindNode(path).Attr.Color = Microsoft.Msagl.Drawing.Color.Blue;
-                }
-                else
-                {
-                    if (graph.FindNode(path).Attr.Color != Microsoft.Msagl.Drawing.Color.Blue)
-                        graph.FindNode(path).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
-                }
-            }*/
-
             while (BFSStack.Count != 0)
             {
 
                 string tempPath = BFSStack.Pop();
                 string prevPath = previousPaths[tempPath];
 
-                if (myMap.ContainsKey(tempPath))
+                if (targetPathSet.Contains(tempPath))
                 {
                     foundTarget = true;
-                    myMap[prevPath] = true;
+                    targetPathSet.Add(prevPath);
                     graph.FindNode(prevPath).Attr.Color = Microsoft.Msagl.Drawing.Color.Blue;
                 }
                 else
