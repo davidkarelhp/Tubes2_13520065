@@ -186,7 +186,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelMenu);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Folder Crawling";
             this.panelMenu.ResumeLayout(false);
             this.panelMenu.PerformLayout();
             this.ResumeLayout(false);

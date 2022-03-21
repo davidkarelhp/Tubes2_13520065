@@ -6,6 +6,229 @@ namespace WinFormsApp1
     public partial class Form1 : Form
     {
         private string directory, target;
+        private int rowCount;
+        private void wait(int milliseconds)
+        {
+            var timer1 = new System.Windows.Forms.Timer();
+            if (milliseconds == 0 || milliseconds < 0) return;
+
+            timer1.Interval = milliseconds;
+            timer1.Enabled = true;
+            timer1.Start();
+
+            timer1.Tick += (s, e) =>
+            {
+                timer1.Enabled = false;
+                timer1.Stop();
+            };
+
+            while (timer1.Enabled)
+            {
+                Application.DoEvents();
+            }
+        }
+        private void colorPathRed(Microsoft.Msagl.Drawing.Node node)
+        {
+            if (node.Attr.Color != Microsoft.Msagl.Drawing.Color.Blue)
+            {
+                node.Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+
+                foreach (Microsoft.Msagl.Drawing.Edge edge in node.InEdges)
+                {
+                    edge.Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                    colorPathRed(edge.SourceNode);
+                }
+            }
+        }
+        private void colorPathBlue(Microsoft.Msagl.Drawing.Node node)
+        {
+            node.Attr.Color = Microsoft.Msagl.Drawing.Color.Blue;
+
+            foreach (Microsoft.Msagl.Drawing.Edge edge in node.InEdges)
+            {
+                edge.Attr.Color = Microsoft.Msagl.Drawing.Color.Blue;
+                colorPathBlue(edge.SourceNode);
+            }
+        }
+        private void TraverseTreeBFS(Microsoft.Msagl.Drawing.Graph graph, GViewer viewer, TableLayoutPanel newPanel, string root, string target, bool allOccurence)
+        {
+            Queue<Microsoft.Msagl.Drawing.Node> dirs = new Queue<Microsoft.Msagl.Drawing.Node>();
+
+            Microsoft.Msagl.Drawing.Node rootNode = new Microsoft.Msagl.Drawing.Node(root);
+            graph.AddNode(rootNode);
+            dirs.Enqueue(rootNode);
+
+            while (dirs.Count > 0)
+            {
+                Microsoft.Msagl.Drawing.Node curNode = dirs.Dequeue();
+                string curDir = curNode.Id;
+                string[] files = Directory.GetFiles(curDir);
+
+                foreach (string file in files)
+                {
+                    Microsoft.Msagl.Drawing.Node fileNode = new Microsoft.Msagl.Drawing.Node(file);
+                    fileNode.LabelText = Path.GetFileName(file);
+                    fileNode.Attr.Shape = Microsoft.Msagl.Drawing.Shape.Ellipse;
+                    fileNode.Attr.Color = Microsoft.Msagl.Drawing.Color.Black;
+                    graph.AddNode(fileNode);
+
+                    Microsoft.Msagl.Drawing.Edge fileEdge = new Microsoft.Msagl.Drawing.Edge(curNode, fileNode, Microsoft.Msagl.Drawing.ConnectionToGraph.Connected);
+                    fileEdge.Attr.Color = Microsoft.Msagl.Drawing.Color.Black;
+                    graph.AddPrecalculatedEdge(fileEdge);
+
+                    wait(500);
+
+                    if (fileNode.LabelText == target)
+                    {
+                        colorPathBlue(fileNode);
+
+                        panelHyperlink.SuspendLayout();
+                        panelHyperlink.Controls.Clear();
+
+                        LinkLabel linkLabel = new LinkLabel();
+                        linkLabel.Dock = DockStyle.Fill;
+                        linkLabel.Text = file;
+                        linkLabel.Links.Add(0, file.Length, file);
+                        linkLabel.LinkClicked += OnLinkClicked;
+                        newPanel.Controls.Add(linkLabel, 0, this.rowCount);
+                        this.rowCount++;
+
+                        panelHyperlink.Controls.Add(newPanel);
+                        panelHyperlink.ResumeLayout();
+
+                        if (!allOccurence)
+                        {
+                            dirs.Clear();
+                        }
+                    }
+                    else
+                    {
+                        colorPathRed(fileNode);
+                    }
+
+                    viewer.Graph = graph;
+                    panelTree.SuspendLayout();
+                    panelTree.Controls.Clear();
+                    panelTree.Controls.Add(viewer);
+                    panelTree.ResumeLayout();
+
+                }
+
+                string[] subDirs = Directory.GetDirectories(curDir);
+
+                foreach (string subDir in subDirs)
+                {
+                    Microsoft.Msagl.Drawing.Node subDirNode = new Microsoft.Msagl.Drawing.Node(subDir);
+                    subDirNode.LabelText = Path.GetFileName(subDir);
+                    subDirNode.Attr.Shape = Microsoft.Msagl.Drawing.Shape.Box;
+                    subDirNode.Attr.Color = Microsoft.Msagl.Drawing.Color.Black;
+                    graph.AddNode(subDirNode);
+
+                    Microsoft.Msagl.Drawing.Edge subDirEdge = new Microsoft.Msagl.Drawing.Edge(curNode, subDirNode, Microsoft.Msagl.Drawing.ConnectionToGraph.Connected);
+                    subDirEdge.Attr.Color = Microsoft.Msagl.Drawing.Color.Black;
+                    graph.AddPrecalculatedEdge(subDirEdge);
+
+                    dirs.Enqueue(subDirNode);
+
+                    wait(500);
+
+                    viewer.Graph = graph;
+                    panelTree.SuspendLayout();
+                    panelTree.Controls.Clear();
+                    panelTree.Controls.Add(viewer);
+                    panelTree.ResumeLayout();
+                }
+            }
+        }
+        private void TraverseTreeDFS(Microsoft.Msagl.Drawing.Graph graph, GViewer viewer, TableLayoutPanel newPanel, string root, string target, bool allOccurence)
+        {
+            Stack<Microsoft.Msagl.Drawing.Node> dirs = new Stack<Microsoft.Msagl.Drawing.Node>();
+
+            Microsoft.Msagl.Drawing.Node rootNode = new Microsoft.Msagl.Drawing.Node(root);
+            graph.AddNode(rootNode);
+            dirs.Push(rootNode);
+
+            while (dirs.Count > 0)
+            {
+                Microsoft.Msagl.Drawing.Node curNode = dirs.Pop();
+                string curDir = curNode.Id;
+                string[] files = Directory.GetFiles(curDir);
+
+                foreach (string file in files)
+                {
+                    Microsoft.Msagl.Drawing.Node fileNode = new Microsoft.Msagl.Drawing.Node(file);
+                    fileNode.LabelText = Path.GetFileName(file);
+                    fileNode.Attr.Shape = Microsoft.Msagl.Drawing.Shape.Ellipse;
+                    fileNode.Attr.Color = Microsoft.Msagl.Drawing.Color.Black;
+                    graph.AddNode(fileNode);
+
+                    Microsoft.Msagl.Drawing.Edge fileEdge = new Microsoft.Msagl.Drawing.Edge(curNode, fileNode, Microsoft.Msagl.Drawing.ConnectionToGraph.Connected);
+                    fileEdge.Attr.Color = Microsoft.Msagl.Drawing.Color.Black;
+                    graph.AddPrecalculatedEdge(fileEdge);
+
+                    wait(500);
+
+                    if (fileNode.LabelText == target)
+                    {
+                        colorPathBlue(fileNode);
+
+                        panelHyperlink.SuspendLayout();
+                        panelHyperlink.Controls.Clear();
+
+                        LinkLabel linkLabel = new LinkLabel();
+                        linkLabel.Dock = DockStyle.Fill;
+                        linkLabel.Text = file;
+                        linkLabel.Links.Add(0, file.Length, file);
+                        linkLabel.LinkClicked += OnLinkClicked;
+                        newPanel.Controls.Add(linkLabel, 0, this.rowCount);
+                        this.rowCount++;
+
+                        panelHyperlink.Controls.Add(newPanel);
+                        panelHyperlink.ResumeLayout();
+
+                        if (!allOccurence)
+                        {
+                            dirs.Clear();
+                        }
+                    }
+                    else
+                    {
+                        colorPathRed(fileNode);
+                    }
+
+                    viewer.Graph = graph;
+                    panelTree.SuspendLayout();
+                    panelTree.Controls.Clear();
+                    panelTree.Controls.Add(viewer);
+                    panelTree.ResumeLayout();
+                }
+
+                string[] subDirs = Directory.GetDirectories(curDir);
+
+                foreach (string subDir in subDirs)
+                {
+                    Microsoft.Msagl.Drawing.Node subDirNode = new Microsoft.Msagl.Drawing.Node(subDir);
+                    subDirNode.LabelText = Path.GetFileName(subDir);
+                    subDirNode.Attr.Shape = Microsoft.Msagl.Drawing.Shape.Box;
+                    subDirNode.Attr.Color = Microsoft.Msagl.Drawing.Color.Black;
+                    graph.AddNode(subDirNode);
+
+                    Microsoft.Msagl.Drawing.Edge subDirEdge = new Microsoft.Msagl.Drawing.Edge(curNode, subDirNode, Microsoft.Msagl.Drawing.ConnectionToGraph.Connected);
+                    subDirEdge.Attr.Color = Microsoft.Msagl.Drawing.Color.Black;
+                    graph.AddPrecalculatedEdge(subDirEdge);
+
+                    dirs.Push(subDirNode);
+
+                    wait(500);
+
+                    viewer.Graph = graph;
+                    panelTree.SuspendLayout();
+                    panelTree.Controls.Clear();
+                    panelTree.Controls.Add(viewer);
+                    panelTree.ResumeLayout();
+                }
+            }
+        }
         public Form1()
         {
             InitializeComponent();
@@ -18,6 +241,7 @@ namespace WinFormsApp1
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
                 this.directory = folderBrowserDialog1.SelectedPath;
+                btnPickFolder.Text = folderBrowserDialog1.SelectedPath;
             }
         }
 
@@ -26,54 +250,31 @@ namespace WinFormsApp1
             this.target = textBoxFileName.Text;
 
             Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
-            Queue<string> targetPathQueue = new Queue<string>();
-
-            if (radioButtonBFS.Checked)
-            {
-                FileTraversal.TraverseTreeBFS(graph, targetPathQueue, this.directory, this.target, checkBoxFindAllOccurence.Checked);
-            } else
-            {
-                FileTraversal.TraverseTreeDFS(graph, targetPathQueue, this.directory, this.target, checkBoxFindAllOccurence.Checked);
-            }
-
             GViewer viewer = new GViewer();
-            viewer.Graph = graph;
+            TableLayoutPanel newPanel = new TableLayoutPanel();
+
             viewer.Dock = DockStyle.Fill;
             viewer.AutoScroll = true;
             viewer.OutsideAreaBrush = Brushes.White;
             viewer.ToolBarIsVisible = false;
 
-            panelTree.SuspendLayout();
-            panelTree.Controls.Clear();
-            panelTree.Controls.Add(viewer);
-            panelTree.ResumeLayout();
-            panelTree.Show();
-
-            panelHyperlink.SuspendLayout();
-            panelHyperlink.Controls.Clear();
-
-            TableLayoutPanel newPanel = new TableLayoutPanel();
             newPanel.Dock = DockStyle.Fill;
             newPanel.BackColor = Color.Gold;
-            newPanel.RowCount = targetPathQueue.Count;
             newPanel.ColumnCount = 1;
             newPanel.AutoScroll = true;
 
-            int rowCount = 0;
-            while (targetPathQueue.Count != 0)
+            this.rowCount = 0;
+
+            if (radioButtonBFS.Checked)
             {
-                string path = targetPathQueue.Dequeue();
-                LinkLabel linkLabel = new LinkLabel();
-                linkLabel.Dock = DockStyle.Fill;
-                linkLabel.Text = path;
-                linkLabel.Links.Add(0, path.Length, path);
-                linkLabel.LinkClicked += OnLinkClicked;
-                newPanel.Controls.Add(linkLabel, 0, rowCount);
-                rowCount++;
+                TraverseTreeBFS(graph, viewer, newPanel, this.directory, this.target, checkBoxFindAllOccurence.Checked);
+            } else
+            {
+                TraverseTreeDFS(graph, viewer, newPanel, this.directory, this.target, checkBoxFindAllOccurence.Checked);
             }
 
-            panelHyperlink.Controls.Add(newPanel);
-            panelHyperlink.ResumeLayout();
+            panelTree.Show();
+
             panelHyperlink.Show();
         }
 
