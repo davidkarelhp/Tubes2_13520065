@@ -229,6 +229,22 @@ namespace WinFormsApp1
                 }
             }
         }
+        private void displayTime(System.Diagnostics.Stopwatch stopwatch, TableLayoutPanel newPanel)
+        {
+            double seconds = (double) stopwatch.Elapsed.Milliseconds / 1000;
+
+            panelHyperlink.SuspendLayout();
+            panelHyperlink.Controls.Clear();
+
+            Label label = new Label();
+            label.Dock = DockStyle.Fill;
+            label.Text = String.Format("Time elapsed: {0} s", seconds);
+            newPanel.Controls.Add(label, 0, this.rowCount);
+            this.rowCount++;
+
+            panelHyperlink.Controls.Add(newPanel);
+            panelHyperlink.ResumeLayout();
+        }
         public Form1()
         {
             InitializeComponent();
@@ -252,6 +268,7 @@ namespace WinFormsApp1
             Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
             GViewer viewer = new GViewer();
             TableLayoutPanel newPanel = new TableLayoutPanel();
+            System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
 
             viewer.Dock = DockStyle.Fill;
             viewer.AutoScroll = true;
@@ -265,6 +282,7 @@ namespace WinFormsApp1
 
             this.rowCount = 0;
 
+            stopwatch.Start();
             if (radioButtonBFS.Checked)
             {
                 TraverseTreeBFS(graph, viewer, newPanel, this.directory, this.target, checkBoxFindAllOccurence.Checked);
@@ -272,6 +290,9 @@ namespace WinFormsApp1
             {
                 TraverseTreeDFS(graph, viewer, newPanel, this.directory, this.target, checkBoxFindAllOccurence.Checked);
             }
+            stopwatch.Stop();
+
+            displayTime(stopwatch, newPanel);
 
             panelTree.Show();
 
