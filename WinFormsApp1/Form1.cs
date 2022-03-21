@@ -275,10 +275,21 @@ namespace WinFormsApp1
             viewer.OutsideAreaBrush = Brushes.White;
             viewer.ToolBarIsVisible = false;
 
+            viewer.Graph = graph;
+            panelTree.SuspendLayout();
+            panelTree.Controls.Clear();
+            panelTree.Controls.Add(viewer);
+            panelTree.ResumeLayout();
+
             newPanel.Dock = DockStyle.Fill;
             newPanel.BackColor = Color.Gold;
             newPanel.ColumnCount = 1;
             newPanel.AutoScroll = true;
+
+            panelHyperlink.SuspendLayout();
+            panelHyperlink.Controls.Clear();
+            panelHyperlink.Controls.Add(newPanel);
+            panelHyperlink.ResumeLayout();
 
             this.rowCount = 0;
 
