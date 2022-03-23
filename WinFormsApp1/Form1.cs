@@ -88,7 +88,7 @@ namespace WinFormsApp1
                         LinkLabel linkLabel = new LinkLabel();
                         linkLabel.Dock = DockStyle.Fill;
                         linkLabel.Text = file;
-                        linkLabel.Links.Add(0, file.Length, file);
+                        linkLabel.Links.Add(0, file.Length, Path.GetDirectoryName(file));
                         linkLabel.LinkClicked += OnLinkClicked;
                         newPanel.Controls.Add(linkLabel, 0, this.rowCount);
                         this.rowCount++;
@@ -178,7 +178,7 @@ namespace WinFormsApp1
                         LinkLabel linkLabel = new LinkLabel();
                         linkLabel.Dock = DockStyle.Fill;
                         linkLabel.Text = file;
-                        linkLabel.Links.Add(0, file.Length, file);
+                        linkLabel.Links.Add(0, file.Length, Path.GetDirectoryName(file));
                         linkLabel.LinkClicked += OnLinkClicked;
                         newPanel.Controls.Add(linkLabel, 0, this.rowCount);
                         this.rowCount++;
