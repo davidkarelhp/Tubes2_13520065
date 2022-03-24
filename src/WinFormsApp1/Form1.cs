@@ -276,22 +276,10 @@ namespace WinFormsApp1
                 }
             }
         }
-        private void displayTime(System.Diagnostics.Stopwatch stopwatch, TableLayoutPanel newPanel)
+        private void displayTime(System.Diagnostics.Stopwatch stopwatch)
         {
-            double seconds = (double) stopwatch.Elapsed.Milliseconds / 1000;
-
-            panelHyperlink.SuspendLayout();
-            panelHyperlink.Controls.Clear();
-
-            Label label = new Label();
-            label.ForeColor = Color.Black;
-            label.Dock = DockStyle.Fill;
-            label.Text = String.Format("Time elapsed: {0} s", seconds);
-            newPanel.Controls.Add(label, 0, this.rowCount);
-            this.rowCount++;
-
-            panelHyperlink.Controls.Add(newPanel);
-            panelHyperlink.ResumeLayout();
+            double seconds = (double)stopwatch.Elapsed.Milliseconds / 1000;
+            labelTimeElapsed.Text = String.Format("Time elapsed: {0} s", seconds);
         }
         public Form1()
         {
@@ -320,7 +308,7 @@ namespace WinFormsApp1
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-
+            labelTimeElapsed.Text = "Time elapsed: -";
             if (this.directory == "")
             {
                 MessageBox.Show("Folder root belum dipilih!", "Warning!");
@@ -370,7 +358,7 @@ namespace WinFormsApp1
                 }
                 stopwatch.Stop();
 
-                displayTime(stopwatch, newPanel);
+                displayTime(stopwatch);
 
                 panelTree.Show();
 

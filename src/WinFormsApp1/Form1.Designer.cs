@@ -47,9 +47,12 @@
             this.panelHyperlink = new System.Windows.Forms.Panel();
             this.panelHeaderOutput = new System.Windows.Forms.Panel();
             this.labelOutput = new System.Windows.Forms.Label();
+            this.panelTimeElapsed = new System.Windows.Forms.Panel();
+            this.labelTimeElapsed = new System.Windows.Forms.Label();
             this.panelMenu.SuspendLayout();
             this.panelLogo.SuspendLayout();
             this.panelHeaderOutput.SuspendLayout();
+            this.panelTimeElapsed.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelMenu
@@ -250,11 +253,10 @@
             // panelTree
             // 
             this.panelTree.BackColor = System.Drawing.Color.White;
-            this.panelTree.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelTree.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelTree.Location = new System.Drawing.Point(377, 80);
             this.panelTree.Name = "panelTree";
-            this.panelTree.Size = new System.Drawing.Size(794, 343);
+            this.panelTree.Size = new System.Drawing.Size(794, 313);
             this.panelTree.TabIndex = 3;
             // 
             // panelHyperlink
@@ -290,12 +292,34 @@
             this.labelOutput.Text = "OUTPUT";
             this.labelOutput.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // panelTimeElapsed
+            // 
+            this.panelTimeElapsed.BackColor = System.Drawing.Color.White;
+            this.panelTimeElapsed.Controls.Add(this.labelTimeElapsed);
+            this.panelTimeElapsed.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelTimeElapsed.Location = new System.Drawing.Point(377, 393);
+            this.panelTimeElapsed.Name = "panelTimeElapsed";
+            this.panelTimeElapsed.Size = new System.Drawing.Size(794, 30);
+            this.panelTimeElapsed.TabIndex = 6;
+            // 
+            // labelTimeElapsed
+            // 
+            this.labelTimeElapsed.AutoSize = true;
+            this.labelTimeElapsed.Dock = System.Windows.Forms.DockStyle.Left;
+            this.labelTimeElapsed.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelTimeElapsed.Location = new System.Drawing.Point(0, 0);
+            this.labelTimeElapsed.Name = "labelTimeElapsed";
+            this.labelTimeElapsed.Size = new System.Drawing.Size(141, 25);
+            this.labelTimeElapsed.TabIndex = 0;
+            this.labelTimeElapsed.Text = "Time elapsed: -";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1171, 523);
             this.Controls.Add(this.panelTree);
+            this.Controls.Add(this.panelTimeElapsed);
             this.Controls.Add(this.panelHeaderOutput);
             this.Controls.Add(this.panelHyperlink);
             this.Controls.Add(this.panel1);
@@ -306,6 +330,8 @@
             this.panelMenu.PerformLayout();
             this.panelLogo.ResumeLayout(false);
             this.panelHeaderOutput.ResumeLayout(false);
+            this.panelTimeElapsed.ResumeLayout(false);
+            this.panelTimeElapsed.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -331,5 +357,7 @@
         private Label label1;
         private Label labelFolderName;
         private Label labelFolderNameHere;
+        private Panel panelTimeElapsed;
+        private Label labelTimeElapsed;
     }
 }
