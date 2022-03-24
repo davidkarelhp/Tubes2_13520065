@@ -53,9 +53,17 @@ namespace WinFormsApp1
         private void TraverseTreeBFS(Microsoft.Msagl.Drawing.Graph graph, GViewer viewer, TableLayoutPanel newPanel, string root, string target, bool allOccurence)
         {
             Queue<Microsoft.Msagl.Drawing.Node> dirs = new Queue<Microsoft.Msagl.Drawing.Node>();
+            bool isStop = false;
 
             Microsoft.Msagl.Drawing.Node rootNode = new Microsoft.Msagl.Drawing.Node(root);
             graph.AddNode(rootNode);
+
+            viewer.Graph = graph;
+            panelTree.SuspendLayout();
+            panelTree.Controls.Clear();
+            panelTree.Controls.Add(viewer);
+            panelTree.ResumeLayout();
+
             dirs.Enqueue(rootNode);
 
             while (dirs.Count > 0)
@@ -100,6 +108,7 @@ namespace WinFormsApp1
                         if (!allOccurence)
                         {
                             dirs.Clear();
+                            isStop = true;
                         }
                     }
                     else
@@ -113,40 +122,56 @@ namespace WinFormsApp1
                     panelTree.Controls.Add(viewer);
                     panelTree.ResumeLayout();
 
+                    if (isStop)
+                    {
+                        break;
+                    }
+
                 }
 
-                string[] subDirs = Directory.GetDirectories(curDir);
-
-                foreach (string subDir in subDirs)
+                if (!isStop)
                 {
-                    Microsoft.Msagl.Drawing.Node subDirNode = new Microsoft.Msagl.Drawing.Node(subDir);
-                    subDirNode.LabelText = Path.GetFileName(subDir);
-                    subDirNode.Attr.Shape = Microsoft.Msagl.Drawing.Shape.Box;
-                    subDirNode.Attr.Color = Microsoft.Msagl.Drawing.Color.Black;
-                    graph.AddNode(subDirNode);
+                    string[] subDirs = Directory.GetDirectories(curDir);
 
-                    Microsoft.Msagl.Drawing.Edge subDirEdge = new Microsoft.Msagl.Drawing.Edge(curNode, subDirNode, Microsoft.Msagl.Drawing.ConnectionToGraph.Connected);
-                    subDirEdge.Attr.Color = Microsoft.Msagl.Drawing.Color.Black;
-                    graph.AddPrecalculatedEdge(subDirEdge);
+                    foreach (string subDir in subDirs)
+                    {
+                        Microsoft.Msagl.Drawing.Node subDirNode = new Microsoft.Msagl.Drawing.Node(subDir);
+                        subDirNode.LabelText = Path.GetFileName(subDir);
+                        subDirNode.Attr.Shape = Microsoft.Msagl.Drawing.Shape.Box;
+                        subDirNode.Attr.Color = Microsoft.Msagl.Drawing.Color.Black;
+                        graph.AddNode(subDirNode);
 
-                    dirs.Enqueue(subDirNode);
+                        Microsoft.Msagl.Drawing.Edge subDirEdge = new Microsoft.Msagl.Drawing.Edge(curNode, subDirNode, Microsoft.Msagl.Drawing.ConnectionToGraph.Connected);
+                        subDirEdge.Attr.Color = Microsoft.Msagl.Drawing.Color.Black;
+                        graph.AddPrecalculatedEdge(subDirEdge);
 
-                    wait(500);
+                        dirs.Enqueue(subDirNode);
 
-                    viewer.Graph = graph;
-                    panelTree.SuspendLayout();
-                    panelTree.Controls.Clear();
-                    panelTree.Controls.Add(viewer);
-                    panelTree.ResumeLayout();
+                        wait(500);
+
+                        viewer.Graph = graph;
+                        panelTree.SuspendLayout();
+                        panelTree.Controls.Clear();
+                        panelTree.Controls.Add(viewer);
+                        panelTree.ResumeLayout();
+                    }
                 }
             }
         }
         private void TraverseTreeDFS(Microsoft.Msagl.Drawing.Graph graph, GViewer viewer, TableLayoutPanel newPanel, string root, string target, bool allOccurence)
         {
             Stack<Microsoft.Msagl.Drawing.Node> dirs = new Stack<Microsoft.Msagl.Drawing.Node>();
+            bool isStop = false;
 
             Microsoft.Msagl.Drawing.Node rootNode = new Microsoft.Msagl.Drawing.Node(root);
             graph.AddNode(rootNode);
+
+            viewer.Graph = graph;
+            panelTree.SuspendLayout();
+            panelTree.Controls.Clear();
+            panelTree.Controls.Add(viewer);
+            panelTree.ResumeLayout();
+
             dirs.Push(rootNode);
 
             while (dirs.Count > 0)
@@ -191,6 +216,7 @@ namespace WinFormsApp1
                         if (!allOccurence)
                         {
                             dirs.Clear();
+                            isStop = true;
                         }
                     }
                     else
@@ -203,31 +229,39 @@ namespace WinFormsApp1
                     panelTree.Controls.Clear();
                     panelTree.Controls.Add(viewer);
                     panelTree.ResumeLayout();
+
+                    if (isStop)
+                    {
+                        break;
+                    }
                 }
 
-                string[] subDirs = Directory.GetDirectories(curDir);
-
-                foreach (string subDir in subDirs)
+                if (!isStop)
                 {
-                    Microsoft.Msagl.Drawing.Node subDirNode = new Microsoft.Msagl.Drawing.Node(subDir);
-                    subDirNode.LabelText = Path.GetFileName(subDir);
-                    subDirNode.Attr.Shape = Microsoft.Msagl.Drawing.Shape.Box;
-                    subDirNode.Attr.Color = Microsoft.Msagl.Drawing.Color.Black;
-                    graph.AddNode(subDirNode);
+                    string[] subDirs = Directory.GetDirectories(curDir);
 
-                    Microsoft.Msagl.Drawing.Edge subDirEdge = new Microsoft.Msagl.Drawing.Edge(curNode, subDirNode, Microsoft.Msagl.Drawing.ConnectionToGraph.Connected);
-                    subDirEdge.Attr.Color = Microsoft.Msagl.Drawing.Color.Black;
-                    graph.AddPrecalculatedEdge(subDirEdge);
+                    foreach (string subDir in subDirs)
+                    {
+                        Microsoft.Msagl.Drawing.Node subDirNode = new Microsoft.Msagl.Drawing.Node(subDir);
+                        subDirNode.LabelText = Path.GetFileName(subDir);
+                        subDirNode.Attr.Shape = Microsoft.Msagl.Drawing.Shape.Box;
+                        subDirNode.Attr.Color = Microsoft.Msagl.Drawing.Color.Black;
+                        graph.AddNode(subDirNode);
 
-                    dirs.Push(subDirNode);
+                        Microsoft.Msagl.Drawing.Edge subDirEdge = new Microsoft.Msagl.Drawing.Edge(curNode, subDirNode, Microsoft.Msagl.Drawing.ConnectionToGraph.Connected);
+                        subDirEdge.Attr.Color = Microsoft.Msagl.Drawing.Color.Black;
+                        graph.AddPrecalculatedEdge(subDirEdge);
 
-                    wait(500);
+                        dirs.Push(subDirNode);
 
-                    viewer.Graph = graph;
-                    panelTree.SuspendLayout();
-                    panelTree.Controls.Clear();
-                    panelTree.Controls.Add(viewer);
-                    panelTree.ResumeLayout();
+                        wait(500);
+
+                        viewer.Graph = graph;
+                        panelTree.SuspendLayout();
+                        panelTree.Controls.Clear();
+                        panelTree.Controls.Add(viewer);
+                        panelTree.ResumeLayout();
+                    }
                 }
             }
         }
@@ -239,7 +273,7 @@ namespace WinFormsApp1
             panelHyperlink.Controls.Clear();
 
             Label label = new Label();
-            label.ForeColor = Color.White;
+            label.ForeColor = Color.Black;
             label.Dock = DockStyle.Fill;
             label.Text = String.Format("Time elapsed: {0} s", seconds);
             newPanel.Controls.Add(label, 0, this.rowCount);
@@ -262,10 +296,11 @@ namespace WinFormsApp1
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
                 this.directory = folderBrowserDialog1.SelectedPath;
-                if (this.directory.Length > 23)
+                if (this.directory.Length > 20)
                 {
-                    labelFolderName.Text = this.directory.Substring(0, 23) + " ...";
-                } else
+                    labelFolderName.Text = this.directory.Substring(0, 20) + "...";
+                }
+                else
                 {
                     labelFolderName.Text = this.directory;
                 }
