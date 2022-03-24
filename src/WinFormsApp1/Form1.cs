@@ -250,6 +250,8 @@ namespace WinFormsApp1
             InitializeComponent();
             this.directory = "";
             this.target = "";
+            radioButtonDFS.Checked = true;
+            /*btnSearch.*/
         }
 
         private void btnPickFolder_Click(object sender, EventArgs e)
@@ -257,57 +259,86 @@ namespace WinFormsApp1
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
                 this.directory = folderBrowserDialog1.SelectedPath;
-                btnPickFolder.Text = folderBrowserDialog1.SelectedPath;
+                /*btnPickFolder.Text = folderBrowserDialog1.SelectedPath;*/
+                Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
+                GViewer viewer = new GViewer();
+
+                graph.AddNode(folderBrowserDialog1.SelectedPath);
+                viewer.Graph = graph;
+                viewer.Dock = DockStyle.Fill;
+                viewer.AutoScroll = true;
+                viewer.OutsideAreaBrush = Brushes.White;
+                viewer.ToolBarIsVisible = false;
+
+                panelTree.SuspendLayout();
+                panelTree.Controls.Clear();
+                panelTree.Controls.Add(viewer);
+                panelTree.ResumeLayout();
+                panelTree.Show();
             }
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            this.target = textBoxFileName.Text;
 
-            Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
-            GViewer viewer = new GViewer();
-            TableLayoutPanel newPanel = new TableLayoutPanel();
-            System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
-
-            viewer.Dock = DockStyle.Fill;
-            viewer.AutoScroll = true;
-            viewer.OutsideAreaBrush = Brushes.White;
-            viewer.ToolBarIsVisible = false;
-
-            viewer.Graph = graph;
-            panelTree.SuspendLayout();
-            panelTree.Controls.Clear();
-            panelTree.Controls.Add(viewer);
-            panelTree.ResumeLayout();
-
-            newPanel.Dock = DockStyle.Fill;
-            newPanel.BackColor = Color.Gold;
-            newPanel.ColumnCount = 1;
-            newPanel.AutoScroll = true;
-
-            panelHyperlink.SuspendLayout();
-            panelHyperlink.Controls.Clear();
-            panelHyperlink.Controls.Add(newPanel);
-            panelHyperlink.ResumeLayout();
-
-            this.rowCount = 0;
-
-            stopwatch.Start();
-            if (radioButtonBFS.Checked)
+            if (this.directory == "")
             {
-                TraverseTreeBFS(graph, viewer, newPanel, this.directory, this.target, checkBoxFindAllOccurence.Checked);
-            } else
+                MessageBox.Show("Folder root belum dipilih!", "Warning!");
+            } else if (textBoxFileName.Text == "")
             {
-                TraverseTreeDFS(graph, viewer, newPanel, this.directory, this.target, checkBoxFindAllOccurence.Checked);
+                MessageBox.Show("Nama file belum dimasukan!", "Warning!");
             }
-            stopwatch.Stop();
+              else
+            {
+                this.target = textBoxFileName.Text;
 
-            displayTime(stopwatch, newPanel);
+                Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
+                GViewer viewer = new GViewer();
+                TableLayoutPanel newPanel = new TableLayoutPanel();
+                System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
 
-            panelTree.Show();
+                viewer.Dock = DockStyle.Fill;
+                viewer.AutoScroll = true;
+                viewer.OutsideAreaBrush = Brushes.White;
+                viewer.ToolBarIsVisible = false;
 
-            panelHyperlink.Show();
+                viewer.Graph = graph;
+                panelTree.SuspendLayout();
+                panelTree.Controls.Clear();
+                panelTree.Controls.Add(viewer);
+                panelTree.ResumeLayout();
+
+                newPanel.Dock = DockStyle.Fill;
+                newPanel.BackColor = Color.Gold;
+                newPanel.ColumnCount = 1;
+                newPanel.AutoScroll = true;
+
+                panelHyperlink.SuspendLayout();
+                panelHyperlink.Controls.Clear();
+                panelHyperlink.Controls.Add(newPanel);
+                panelHyperlink.ResumeLayout();
+
+                this.rowCount = 0;
+
+                stopwatch.Start();
+                if (radioButtonBFS.Checked)
+                {
+                    TraverseTreeBFS(graph, viewer, newPanel, this.directory, this.target, checkBoxFindAllOccurence.Checked);
+                } else
+                {
+                    TraverseTreeDFS(graph, viewer, newPanel, this.directory, this.target, checkBoxFindAllOccurence.Checked);
+                }
+                stopwatch.Stop();
+
+                displayTime(stopwatch, newPanel);
+
+                panelTree.Show();
+
+                panelHyperlink.Show();
+                this.directory = "";
+                this.target = "";
+
+            }
         }
 
         void OnLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

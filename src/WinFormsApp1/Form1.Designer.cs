@@ -56,7 +56,7 @@
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMenu.Location = new System.Drawing.Point(0, 0);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(220, 450);
+            this.panelMenu.Size = new System.Drawing.Size(220, 496);
             this.panelMenu.TabIndex = 0;
             // 
             // radioButtonBFS
@@ -103,7 +103,7 @@
             this.btnSearch.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnSearch.Location = new System.Drawing.Point(0, 390);
+            this.btnSearch.Location = new System.Drawing.Point(0, 436);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(220, 60);
             this.btnSearch.TabIndex = 2;
@@ -154,7 +154,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(220, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(580, 0);
+            this.panel1.Size = new System.Drawing.Size(850, 0);
             this.panel1.TabIndex = 1;
             // 
             // panelTree
@@ -164,23 +164,23 @@
             this.panelTree.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelTree.Location = new System.Drawing.Point(220, 0);
             this.panelTree.Name = "panelTree";
-            this.panelTree.Size = new System.Drawing.Size(580, 350);
+            this.panelTree.Size = new System.Drawing.Size(850, 396);
             this.panelTree.TabIndex = 3;
             // 
             // panelHyperlink
             // 
             this.panelHyperlink.BackColor = System.Drawing.Color.Gold;
             this.panelHyperlink.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelHyperlink.Location = new System.Drawing.Point(220, 350);
+            this.panelHyperlink.Location = new System.Drawing.Point(220, 396);
             this.panelHyperlink.Name = "panelHyperlink";
-            this.panelHyperlink.Size = new System.Drawing.Size(580, 100);
+            this.panelHyperlink.Size = new System.Drawing.Size(850, 100);
             this.panelHyperlink.TabIndex = 4;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1070, 496);
             this.Controls.Add(this.panelTree);
             this.Controls.Add(this.panelHyperlink);
             this.Controls.Add(this.panel1);
