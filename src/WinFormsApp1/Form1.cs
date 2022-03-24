@@ -85,6 +85,12 @@ namespace WinFormsApp1
                     graph.AddPrecalculatedEdge(fileEdge);
 
                     wait(500);
+                    viewer.Graph = graph;
+                    panelTree.SuspendLayout();
+                    panelTree.Controls.Clear();
+                    panelTree.Controls.Add(viewer);
+                    panelTree.ResumeLayout();
+                    wait(500);
 
                     if (fileNode.LabelText == target)
                     {
@@ -96,7 +102,7 @@ namespace WinFormsApp1
                         LinkLabel linkLabel = new LinkLabel();
                         linkLabel.Dock = DockStyle.Fill;
                         linkLabel.Text = file;
-                        linkLabel.LinkColor = Color.Blue;
+                        linkLabel.LinkColor = Color.Black;
                         linkLabel.Links.Add(0, file.Length, Path.GetDirectoryName(file));
                         linkLabel.LinkClicked += OnLinkClicked;
                         newPanel.Controls.Add(linkLabel, 0, this.rowCount);
@@ -191,7 +197,12 @@ namespace WinFormsApp1
                     Microsoft.Msagl.Drawing.Edge fileEdge = new Microsoft.Msagl.Drawing.Edge(curNode, fileNode, Microsoft.Msagl.Drawing.ConnectionToGraph.Connected);
                     fileEdge.Attr.Color = Microsoft.Msagl.Drawing.Color.Black;
                     graph.AddPrecalculatedEdge(fileEdge);
-
+                    wait(500);
+                    viewer.Graph = graph;
+                    panelTree.SuspendLayout();
+                    panelTree.Controls.Clear();
+                    panelTree.Controls.Add(viewer);
+                    panelTree.ResumeLayout();
                     wait(500);
 
                     if (fileNode.LabelText == target)
