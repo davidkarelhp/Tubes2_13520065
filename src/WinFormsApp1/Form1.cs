@@ -88,7 +88,7 @@ namespace WinFormsApp1
                         LinkLabel linkLabel = new LinkLabel();
                         linkLabel.Dock = DockStyle.Fill;
                         linkLabel.Text = file;
-                        linkLabel.LinkColor = Color.White;
+                        linkLabel.LinkColor = Color.Blue;
                         linkLabel.Links.Add(0, file.Length, Path.GetDirectoryName(file));
                         linkLabel.LinkClicked += OnLinkClicked;
                         newPanel.Controls.Add(linkLabel, 0, this.rowCount);
@@ -179,7 +179,7 @@ namespace WinFormsApp1
                         LinkLabel linkLabel = new LinkLabel();
                         linkLabel.Dock = DockStyle.Fill;
                         linkLabel.Text = file;
-                        linkLabel.LinkColor = Color.White;
+                        linkLabel.LinkColor = Color.Black;
                         linkLabel.Links.Add(0, file.Length, Path.GetDirectoryName(file));
                         linkLabel.LinkClicked += OnLinkClicked;
                         newPanel.Controls.Add(linkLabel, 0, this.rowCount);
@@ -262,22 +262,13 @@ namespace WinFormsApp1
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
                 this.directory = folderBrowserDialog1.SelectedPath;
-                /*btnPickFolder.Text = folderBrowserDialog1.SelectedPath;*/
-                Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
-                GViewer viewer = new GViewer();
-
-                graph.AddNode(folderBrowserDialog1.SelectedPath);
-                viewer.Graph = graph;
-                viewer.Dock = DockStyle.Fill;
-                viewer.AutoScroll = true;
-                viewer.OutsideAreaBrush = Brushes.White;
-                viewer.ToolBarIsVisible = false;
-
-                panelTree.SuspendLayout();
-                panelTree.Controls.Clear();
-                panelTree.Controls.Add(viewer);
-                panelTree.ResumeLayout();
-                panelTree.Show();
+                if (this.directory.Length > 23)
+                {
+                    labelFolderName.Text = this.directory.Substring(0, 23) + " ...";
+                } else
+                {
+                    labelFolderName.Text = this.directory;
+                }
             }
         }
 
@@ -312,7 +303,7 @@ namespace WinFormsApp1
                 panelTree.ResumeLayout();
 
                 newPanel.Dock = DockStyle.Fill;
-                newPanel.BackColor = Color.FromArgb(47, 79, 79);
+                newPanel.BackColor = Color.White;
                 newPanel.ColumnCount = 1;
                 newPanel.AutoScroll = true;
 
@@ -338,8 +329,6 @@ namespace WinFormsApp1
                 panelTree.Show();
 
                 panelHyperlink.Show();
-                this.directory = "";
-                this.target = "";
 
             }
         }

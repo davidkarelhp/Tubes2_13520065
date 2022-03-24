@@ -30,6 +30,8 @@
         {
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.labelFolderName = new System.Windows.Forms.Label();
+            this.labelFolderNameHere = new System.Windows.Forms.Label();
             this.labelOptions = new System.Windows.Forms.Label();
             this.labelInputFileName = new System.Windows.Forms.Label();
             this.radioButtonBFS = new System.Windows.Forms.RadioButton();
@@ -54,6 +56,8 @@
             // 
             this.panelMenu.BackColor = System.Drawing.Color.White;
             this.panelMenu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelMenu.Controls.Add(this.labelFolderName);
+            this.panelMenu.Controls.Add(this.labelFolderNameHere);
             this.panelMenu.Controls.Add(this.labelOptions);
             this.panelMenu.Controls.Add(this.labelInputFileName);
             this.panelMenu.Controls.Add(this.radioButtonBFS);
@@ -69,12 +73,35 @@
             this.panelMenu.Size = new System.Drawing.Size(377, 523);
             this.panelMenu.TabIndex = 0;
             // 
+            // labelFolderName
+            // 
+            this.labelFolderName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelFolderName.AutoSize = true;
+            this.labelFolderName.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelFolderName.Location = new System.Drawing.Point(63, 173);
+            this.labelFolderName.MaximumSize = new System.Drawing.Size(238, 25);
+            this.labelFolderName.Name = "labelFolderName";
+            this.labelFolderName.Size = new System.Drawing.Size(19, 25);
+            this.labelFolderName.TabIndex = 9;
+            this.labelFolderName.Text = "-";
+            // 
+            // labelFolderNameHere
+            // 
+            this.labelFolderNameHere.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelFolderNameHere.AutoSize = true;
+            this.labelFolderNameHere.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelFolderNameHere.Location = new System.Drawing.Point(62, 149);
+            this.labelFolderNameHere.Name = "labelFolderNameHere";
+            this.labelFolderNameHere.Size = new System.Drawing.Size(125, 25);
+            this.labelFolderNameHere.TabIndex = 8;
+            this.labelFolderNameHere.Text = "Folder Name:";
+            // 
             // labelOptions
             // 
             this.labelOptions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.labelOptions.AutoSize = true;
             this.labelOptions.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelOptions.Location = new System.Drawing.Point(62, 247);
+            this.labelOptions.Location = new System.Drawing.Point(62, 295);
             this.labelOptions.Name = "labelOptions";
             this.labelOptions.Size = new System.Drawing.Size(79, 25);
             this.labelOptions.TabIndex = 7;
@@ -86,7 +113,7 @@
             this.labelInputFileName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.labelInputFileName.AutoSize = true;
             this.labelInputFileName.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelInputFileName.Location = new System.Drawing.Point(62, 164);
+            this.labelInputFileName.Location = new System.Drawing.Point(62, 212);
             this.labelInputFileName.Name = "labelInputFileName";
             this.labelInputFileName.Size = new System.Drawing.Size(147, 25);
             this.labelInputFileName.TabIndex = 6;
@@ -99,7 +126,7 @@
             this.radioButtonBFS.AutoSize = true;
             this.radioButtonBFS.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.radioButtonBFS.ForeColor = System.Drawing.Color.Black;
-            this.radioButtonBFS.Location = new System.Drawing.Point(67, 310);
+            this.radioButtonBFS.Location = new System.Drawing.Point(67, 358);
             this.radioButtonBFS.Name = "radioButtonBFS";
             this.radioButtonBFS.Size = new System.Drawing.Size(68, 29);
             this.radioButtonBFS.TabIndex = 5;
@@ -113,7 +140,7 @@
             this.radioButtonDFS.AutoSize = true;
             this.radioButtonDFS.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.radioButtonDFS.ForeColor = System.Drawing.Color.Black;
-            this.radioButtonDFS.Location = new System.Drawing.Point(66, 275);
+            this.radioButtonDFS.Location = new System.Drawing.Point(66, 323);
             this.radioButtonDFS.Name = "radioButtonDFS";
             this.radioButtonDFS.Size = new System.Drawing.Size(69, 29);
             this.radioButtonDFS.TabIndex = 4;
@@ -157,10 +184,10 @@
             // textBoxFileName
             // 
             this.textBoxFileName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxFileName.Location = new System.Drawing.Point(66, 192);
+            this.textBoxFileName.Location = new System.Drawing.Point(66, 240);
             this.textBoxFileName.Name = "textBoxFileName";
             this.textBoxFileName.PlaceholderText = "Type here...";
-            this.textBoxFileName.Size = new System.Drawing.Size(200, 31);
+            this.textBoxFileName.Size = new System.Drawing.Size(238, 31);
             this.textBoxFileName.TabIndex = 0;
             this.textBoxFileName.TextChanged += new System.EventHandler(this.textBoxFileName_TextChanged);
             // 
@@ -200,7 +227,6 @@
             // label1
             // 
             this.label1.BackColor = System.Drawing.Color.White;
-            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(0, 0);
@@ -223,7 +249,6 @@
             // 
             // panelTree
             // 
-            this.panelTree.AutoScroll = true;
             this.panelTree.BackColor = System.Drawing.Color.White;
             this.panelTree.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelTree.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -234,7 +259,7 @@
             // 
             // panelHyperlink
             // 
-            this.panelHyperlink.BackColor = System.Drawing.Color.DodgerBlue;
+            this.panelHyperlink.BackColor = System.Drawing.Color.White;
             this.panelHyperlink.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelHyperlink.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelHyperlink.Location = new System.Drawing.Point(377, 423);
@@ -304,5 +329,7 @@
         private Panel panelHeaderOutput;
         private Label labelOutput;
         private Label label1;
+        private Label labelFolderName;
+        private Label labelFolderNameHere;
     }
 }
