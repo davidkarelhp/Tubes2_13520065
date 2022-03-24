@@ -88,6 +88,7 @@ namespace WinFormsApp1
                         LinkLabel linkLabel = new LinkLabel();
                         linkLabel.Dock = DockStyle.Fill;
                         linkLabel.Text = file;
+                        linkLabel.LinkColor = Color.White;
                         linkLabel.Links.Add(0, file.Length, Path.GetDirectoryName(file));
                         linkLabel.LinkClicked += OnLinkClicked;
                         newPanel.Controls.Add(linkLabel, 0, this.rowCount);
@@ -178,6 +179,7 @@ namespace WinFormsApp1
                         LinkLabel linkLabel = new LinkLabel();
                         linkLabel.Dock = DockStyle.Fill;
                         linkLabel.Text = file;
+                        linkLabel.LinkColor = Color.White;
                         linkLabel.Links.Add(0, file.Length, Path.GetDirectoryName(file));
                         linkLabel.LinkClicked += OnLinkClicked;
                         newPanel.Controls.Add(linkLabel, 0, this.rowCount);
@@ -237,6 +239,7 @@ namespace WinFormsApp1
             panelHyperlink.Controls.Clear();
 
             Label label = new Label();
+            label.ForeColor = Color.White;
             label.Dock = DockStyle.Fill;
             label.Text = String.Format("Time elapsed: {0} s", seconds);
             newPanel.Controls.Add(label, 0, this.rowCount);
@@ -309,7 +312,7 @@ namespace WinFormsApp1
                 panelTree.ResumeLayout();
 
                 newPanel.Dock = DockStyle.Fill;
-                newPanel.BackColor = Color.Gold;
+                newPanel.BackColor = Color.FromArgb(47, 79, 79);
                 newPanel.ColumnCount = 1;
                 newPanel.AutoScroll = true;
 
@@ -339,6 +342,36 @@ namespace WinFormsApp1
                 this.target = "";
 
             }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxFileName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBoxFindAllOccurence_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panelHeaderOutput_Paint(object sender, PaintEventArgs e)
+        {
+            
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
         }
 
         void OnLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
