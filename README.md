@@ -27,6 +27,20 @@ Dalam menyelesaikan permasalahan tambahan, yaitu menampilkan solusi dari pencari
     │   .gitignore
     │   README.md
     │
+    ├───bin
+    │   └───Release
+    │       │   WinFormsApp1.1.0.0.nupkg
+    │       │
+    │       └───net6.0-windows
+    │               AutomaticGraphLayout.dll
+    │               AutomaticGraphLayout.Drawing.dll
+    │               Microsoft.Msagl.GraphViewerGdi.dll
+    │               Microsoft.Msagl.WpfGraphControl.dll
+    │               Tubes2_13520065.exe
+    │               WinFormsApp1.deps.json
+    │               WinFormsApp1.dll
+    │               WinFormsApp1.runtimeconfig.json
+    │
     ├───doc
     │       Tubes2_13520065.pdf
     │
@@ -47,7 +61,7 @@ Dalam menyelesaikan permasalahan tambahan, yaitu menampilkan solusi dari pencari
             │       WinFormsApp1.csproj.nuget.dgspec.json
             │       WinFormsApp1.csproj.nuget.g.props
             │       WinFormsApp1.csproj.nuget.g.targets
-            │   
+            │
             ├───Properties
             │       Resources.Designer.cs
             │       Resources.resx
@@ -68,7 +82,7 @@ Dalam menyelesaikan permasalahan tambahan, yaitu menampilkan solusi dari pencari
 3. Run program dengan menggunakan tombol Run pada Visual Studio 2022
 
 ## Cara Menjalankan Program
-1. Buka folder `bin` pada folder repositori
+1. Buka folder `bin/Release/net6.0-windows` pada folder repositori
 2. Jalankan file `Tubes2_13520065.exe`
 
 ## Authors
