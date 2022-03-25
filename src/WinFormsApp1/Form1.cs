@@ -278,7 +278,7 @@ namespace WinFormsApp1
         }
         private void displayTime(System.Diagnostics.Stopwatch stopwatch)
         {
-            double seconds = (double)stopwatch.Elapsed.Milliseconds / 1000;
+            double seconds = (double)stopwatch.ElapsedMilliseconds / 1000;
             labelTimeElapsed.Text = String.Format("Time elapsed: {0} s", seconds);
         }
         public Form1()
