@@ -90,6 +90,7 @@ namespace WinFormsApp1
                     panelTree.Controls.Clear();
                     panelTree.Controls.Add(viewer);
                     panelTree.ResumeLayout();
+
                     wait(500);
 
                     if (fileNode.LabelText == target)
@@ -197,12 +198,14 @@ namespace WinFormsApp1
                     Microsoft.Msagl.Drawing.Edge fileEdge = new Microsoft.Msagl.Drawing.Edge(curNode, fileNode, Microsoft.Msagl.Drawing.ConnectionToGraph.Connected);
                     fileEdge.Attr.Color = Microsoft.Msagl.Drawing.Color.Black;
                     graph.AddPrecalculatedEdge(fileEdge);
+
                     wait(500);
                     viewer.Graph = graph;
                     panelTree.SuspendLayout();
                     panelTree.Controls.Clear();
                     panelTree.Controls.Add(viewer);
                     panelTree.ResumeLayout();
+
                     wait(500);
 
                     if (fileNode.LabelText == target)
@@ -287,7 +290,6 @@ namespace WinFormsApp1
             this.directory = "";
             this.target = "";
             radioButtonDFS.Checked = true;
-            /*btnSearch.*/
         }
 
         private void btnPickFolder_Click(object sender, EventArgs e)
@@ -365,36 +367,6 @@ namespace WinFormsApp1
                 panelHyperlink.Show();
 
             }
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxFileName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkBoxFindAllOccurence_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panelHeaderOutput_Paint(object sender, PaintEventArgs e)
-        {
-            
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
         }
 
         void OnLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

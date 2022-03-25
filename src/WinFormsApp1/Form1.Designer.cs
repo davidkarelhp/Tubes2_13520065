@@ -109,7 +109,6 @@
             this.labelOptions.Size = new System.Drawing.Size(79, 25);
             this.labelOptions.TabIndex = 7;
             this.labelOptions.Text = "Options";
-            this.labelOptions.Click += new System.EventHandler(this.label2_Click);
             // 
             // labelInputFileName
             // 
@@ -121,7 +120,6 @@
             this.labelInputFileName.Size = new System.Drawing.Size(147, 25);
             this.labelInputFileName.TabIndex = 6;
             this.labelInputFileName.Text = "Input File Name";
-            this.labelInputFileName.Click += new System.EventHandler(this.label1_Click);
             // 
             // radioButtonBFS
             // 
@@ -163,7 +161,6 @@
             this.checkBoxFindAllOccurence.TabIndex = 3;
             this.checkBoxFindAllOccurence.Text = "Find All Occurence";
             this.checkBoxFindAllOccurence.UseVisualStyleBackColor = true;
-            this.checkBoxFindAllOccurence.CheckedChanged += new System.EventHandler(this.checkBoxFindAllOccurence_CheckedChanged);
             // 
             // btnSearch
             // 
@@ -192,7 +189,6 @@
             this.textBoxFileName.PlaceholderText = "Type here...";
             this.textBoxFileName.Size = new System.Drawing.Size(238, 31);
             this.textBoxFileName.TabIndex = 0;
-            this.textBoxFileName.TextChanged += new System.EventHandler(this.textBoxFileName_TextChanged);
             // 
             // btnPickFolder
             // 
@@ -238,7 +234,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "INPUT";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label1.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // panel1
             // 
@@ -278,7 +273,6 @@
             this.panelHeaderOutput.Name = "panelHeaderOutput";
             this.panelHeaderOutput.Size = new System.Drawing.Size(794, 80);
             this.panelHeaderOutput.TabIndex = 5;
-            this.panelHeaderOutput.Paint += new System.Windows.Forms.PaintEventHandler(this.panelHeaderOutput_Paint);
             // 
             // labelOutput
             // 
