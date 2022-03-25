@@ -140,21 +140,36 @@ namespace WinFormsApp1
                 {
                     string[] subDirs = Directory.GetDirectories(curDir);
 
-                    foreach (string subDir in subDirs)
+                    if (subDirs.Length > 0)
                     {
-                        Microsoft.Msagl.Drawing.Node subDirNode = new Microsoft.Msagl.Drawing.Node(subDir);
-                        subDirNode.LabelText = Path.GetFileName(subDir);
-                        subDirNode.Attr.Shape = Microsoft.Msagl.Drawing.Shape.Box;
-                        subDirNode.Attr.Color = Microsoft.Msagl.Drawing.Color.Black;
-                        graph.AddNode(subDirNode);
+                        foreach (string subDir in subDirs)
+                        {
+                            Microsoft.Msagl.Drawing.Node subDirNode = new Microsoft.Msagl.Drawing.Node(subDir);
+                            subDirNode.LabelText = Path.GetFileName(subDir);
+                            subDirNode.Attr.Shape = Microsoft.Msagl.Drawing.Shape.Box;
+                            subDirNode.Attr.Color = Microsoft.Msagl.Drawing.Color.Black;
+                            graph.AddNode(subDirNode);
 
-                        Microsoft.Msagl.Drawing.Edge subDirEdge = new Microsoft.Msagl.Drawing.Edge(curNode, subDirNode, Microsoft.Msagl.Drawing.ConnectionToGraph.Connected);
-                        subDirEdge.Attr.Color = Microsoft.Msagl.Drawing.Color.Black;
-                        graph.AddPrecalculatedEdge(subDirEdge);
+                            Microsoft.Msagl.Drawing.Edge subDirEdge = new Microsoft.Msagl.Drawing.Edge(curNode, subDirNode, Microsoft.Msagl.Drawing.ConnectionToGraph.Connected);
+                            subDirEdge.Attr.Color = Microsoft.Msagl.Drawing.Color.Black;
+                            graph.AddPrecalculatedEdge(subDirEdge);
 
-                        dirs.Enqueue(subDirNode);
+                            dirs.Enqueue(subDirNode);
 
+                            wait(500);
+
+                            viewer.Graph = graph;
+                            panelTree.SuspendLayout();
+                            panelTree.Controls.Clear();
+                            panelTree.Controls.Add(viewer);
+                            panelTree.ResumeLayout();
+                        }
+                    } 
+                    else
+                    {
                         wait(500);
+
+                        colorPathRed(curNode);
 
                         viewer.Graph = graph;
                         panelTree.SuspendLayout();
@@ -254,21 +269,36 @@ namespace WinFormsApp1
                 {
                     string[] subDirs = Directory.GetDirectories(curDir);
 
-                    foreach (string subDir in subDirs)
+                    if (subDirs.Length > 0)
                     {
-                        Microsoft.Msagl.Drawing.Node subDirNode = new Microsoft.Msagl.Drawing.Node(subDir);
-                        subDirNode.LabelText = Path.GetFileName(subDir);
-                        subDirNode.Attr.Shape = Microsoft.Msagl.Drawing.Shape.Box;
-                        subDirNode.Attr.Color = Microsoft.Msagl.Drawing.Color.Black;
-                        graph.AddNode(subDirNode);
+                        foreach (string subDir in subDirs)
+                        {
+                            Microsoft.Msagl.Drawing.Node subDirNode = new Microsoft.Msagl.Drawing.Node(subDir);
+                            subDirNode.LabelText = Path.GetFileName(subDir);
+                            subDirNode.Attr.Shape = Microsoft.Msagl.Drawing.Shape.Box;
+                            subDirNode.Attr.Color = Microsoft.Msagl.Drawing.Color.Black;
+                            graph.AddNode(subDirNode);
 
-                        Microsoft.Msagl.Drawing.Edge subDirEdge = new Microsoft.Msagl.Drawing.Edge(curNode, subDirNode, Microsoft.Msagl.Drawing.ConnectionToGraph.Connected);
-                        subDirEdge.Attr.Color = Microsoft.Msagl.Drawing.Color.Black;
-                        graph.AddPrecalculatedEdge(subDirEdge);
+                            Microsoft.Msagl.Drawing.Edge subDirEdge = new Microsoft.Msagl.Drawing.Edge(curNode, subDirNode, Microsoft.Msagl.Drawing.ConnectionToGraph.Connected);
+                            subDirEdge.Attr.Color = Microsoft.Msagl.Drawing.Color.Black;
+                            graph.AddPrecalculatedEdge(subDirEdge);
 
-                        dirs.Push(subDirNode);
+                            dirs.Push(subDirNode);
 
+                            wait(500);
+
+                            viewer.Graph = graph;
+                            panelTree.SuspendLayout();
+                            panelTree.Controls.Clear();
+                            panelTree.Controls.Add(viewer);
+                            panelTree.ResumeLayout();
+                        }
+                    }
+                    else
+                    {
                         wait(500);
+
+                        colorPathRed(curNode);
 
                         viewer.Graph = graph;
                         panelTree.SuspendLayout();
@@ -276,6 +306,7 @@ namespace WinFormsApp1
                         panelTree.Controls.Add(viewer);
                         panelTree.ResumeLayout();
                     }
+                    
                 }
             }
         }
