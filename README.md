@@ -8,10 +8,10 @@ Pengaplikasian Algoritma BFS dan DFS dalam Implementasi Folder-Crawling
 * [Requirement Program](#requirement-program)
 * [Cara Kompilasi Program](#cara-kompilasi-program)
 * [Cara Menjalankan Program](#cara-menjalankan-program)
-* [Author](#author)
+* [Authors](#authors)
+* [Link Demo Program](#link-demo-program)
 
 ## Deskripsi Singkat Program
-
 
 Dalam tugas besar ini, Anda akan diminta untuk membangun sebuah aplikasi GUI sederhana yang dapat memodelkan fitur dari file explorer pada sistem operasi, yang pada tugas ini disebut dengan Folder Crawling. Dengan memanfaatkan algoritma Breadth First Search (BFS) dan Depth First Search (DFS), Anda dapat menelusuri folder-folder yang ada pada direktori untuk mendapatkan direktori yang Anda inginkan. Anda juga diminta untuk memvisualisasikan hasil dari pencarian folder tersebut dalam bentuk pohon.
 
@@ -78,3 +78,6 @@ Dalam menyelesaikan permasalahan tambahan, yaitu menampilkan solusi dari pencari
 | 13520065 | Rayhan Kinan Muhannad       |
 | 13520113 | Brianaldo Phandiarta        |
 | 13520154 | David Karel Halomoan        |
+
+## Link Demo Program
+* [Tugas Besar II IF2211 Strategi Algoritma tahun 2021/2022](https://youtu.be/yXU5yzOTzYQ)

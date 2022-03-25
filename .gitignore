@@ -9,10 +9,10 @@
 # Build results
 
 [Dd]ebug/
-[Rr]elease/
+# [Rr]elease/
 x64/
-[Bb]in/
-[Oo]bj/
+# [Bb]in/
+# [Oo]bj/
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
@@ -133,4 +133,4 @@ $RECYCLE.BIN/
 _NCrunch*
 
 # .vs
-.vs
+.vs/
